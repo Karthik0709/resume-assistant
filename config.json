@@ -1,0 +1,23 @@
+{
+  "project": {
+    "name": "portfolio-chatbot",
+    "version": "0.1.0"
+  },
+  "embedding": {
+    "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+    "embedding_dimension": 384
+  },
+  "chunking": {
+    "chunk_size": 1000,
+    "chunk_overlap": 200,
+    "separator": "\n\n"
+  },
+  "vector_store": {
+    "db_path": "./data/vector_db",
+    "collection_name": "resume_chunks"
+  },
+  "rag": {
+    "max_retrieved_chunks": 3,
+    "min_relevance_score": 0.5
+  }
+}
