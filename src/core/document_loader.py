@@ -40,6 +40,7 @@ class DoclingDocumentLoader(BaseDocumentLoader):
         splitted_docs = splitter.split_documents(docs)
 
         converted = [Document(
+            id=f"{path.name}#{doc.metadata.get('page', 0)}#{i}",
             content= doc.page_content,
             source = str(doc.metadata.get('source')),
             page_number = doc.metadata.get('page',0),
