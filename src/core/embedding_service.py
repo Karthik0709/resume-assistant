@@ -28,12 +28,13 @@ class EmbeddingService:
             logger.error(f"Embedding text failed with exception {e}")
             raise EmbeddingError(f"Failed to embed text: {e}") from e
     
-    def embed_batch(self,documents: List[Document]) -> List[List[float]]:
+    def embed_batch(self,documents: List[Document]) -> List[tuple[Document,List[float]]]:
         logger.info(f"Generating batch embeddings for {len(documents)} document(s).")
 
         try:
-            docs_to_embed = [docs.content for docs in documents]
-            return self.model.embed_documents(docs_to_embed)
+            docs_to_embed = [doc.content for doc in documents]
+            embeddings = self.model.embed_documents(docs_to_embed)
+            return list(zip(documents, embeddings))
         
         except Exception as e:
             logger.error(f"Batch embedding failed: {e}")
