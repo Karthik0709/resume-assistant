@@ -19,7 +19,7 @@ class DoclingDocumentLoader(BaseDocumentLoader):
         path = Path(self.file_path)
 
         if not path.is_absolute():
-            path = Path(__file__).resolve().parent.parent / "data" / self.file_path
+            path = Path(__file__).resolve().parent.parent.parent / "data" / self.file_path
         
         loader = DoclingLoader(file_path=path)
         docs = loader.load()
@@ -31,7 +31,7 @@ class DoclingDocumentLoader(BaseDocumentLoader):
 
         converted = [Document(
             content= doc.page_content,
-            source = doc.metadata.get('source'),
+            source = str(doc.metadata.get('source')),
             page_number = doc.metadata.get('page',0),
             chunk_index = i
         )
