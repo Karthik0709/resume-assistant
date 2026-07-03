@@ -4,6 +4,7 @@ from typing import Optional, List
 
 class Document(BaseModel):
     """Represents a chunk from the resume"""
+    id: str
     content: str          
     source: str           
     page_number: int      
